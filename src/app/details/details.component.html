@@ -1,0 +1,18 @@
+<div id="app">
+    <table>
+        <thead>
+            <tr>
+                <th  > Name </th>
+                <th  >Phone </th>
+                <th  >Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of allHotel">
+                <td>{{a.pName}}</td>
+                <td>{{a.phone}}</td>
+                <td>{{a.address}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

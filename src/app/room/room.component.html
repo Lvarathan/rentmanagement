@@ -1,0 +1,63 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+
+
+    <div class="row">
+        <div class="one">
+            <div class="input-group rounded">
+
+                <input type="text" id="searching" class="form-control rounded" name="search" placeholder="Search"
+                    [(ngModel)]="search" />
+
+                <span class="input-group-text border-0" id="searching">
+                    <i class="fa fa-search"></i>
+                </span>
+                <br> <button id="searching" class="btn btn-outline-success" (click)="sort('review')" type="button"
+                    style="margin-left: 20%;">sort</button>
+
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-12 " style="margin-top: 20px;"
+            *ngFor="let hotel of rent | search: search | orderBy: key: reverse   ;let i=index">
+            <div class="card m-b-30 " style="background-color:rgb(247, 247, 247); margin-left: 10%;">
+                <div class="card-body row">
+                    <div class="col-2">
+                        <a href=""><img src="{{hotel.image_url}}" class="img-fluid" style="width: 500%;"></a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <h5>{{hotel.name}}</h5>
+                        </a>
+                        <p>{{hotel.address}}</p>
+                    </div>
+                </div>
+                <ul>
+                    <p><i class="fa fa-envelope "></i>Email : {{hotel.email}}</p>
+                    <p style="margin-top: 10px" class=""><i class="fa fa-phone "></i> Phone : {{hotel.phone}} </p>
+                    <p class="btn btn-primary" style="margin-left: 85%; ">{{hotel.review}}</p>
+                    <Br>
+                    <button class="btn btn-primary" (click)="onclick(hotel.name,hotel.address,hotel.email)">Book </button>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="display"   [style]="{ width: '100vh',height:'100vh'}">
+    <form #hotelForm="ngForm" (ngSubmit)="detailcreate(hotelForm.value)">
+        <h2 style="color: azure; background-color: black; text-align: center;">{{hotelName}}</h2>
+
+        <div class="log">
+            <h6> Name : <input type="text" name="pName" ngModel> </h6>
+            <h6>Contact : <input type="number" name="phone" ngModel></h6>
+            <h6>Address : <input type="text" name="address" ngModel></h6>
+
+            <button class="btn btn-outline-success">Submit</button>
+        </div>
+    </form>
+</p-dialog>
+
+
+<router-outlet></router-outlet>
